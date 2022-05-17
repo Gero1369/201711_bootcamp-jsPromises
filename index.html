@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Some title for this page</title>
+
+    </head>
+    <body>
+        <div id="content">
+            Nothing to see here.
+        </div>
+        <script type="text/javascript">
+            if (typeof fetch != 'undefined'){
+				console.log('we have fetch')
+				
+				let list = '<ul>'
+				fetch('http://demo3087851.mockable.io')
+				.then((response)=>response.json())
+				.then((json) => {
+					console.log(json)
+					for(let i =0;i<json.length;i++){
+						list += `<li>${json[i]['first_name']} ${json[i]['last_name']}</li><ul>`
+						for (const prop in json[i]) {
+							if (json[i].hasOwnProperty(prop)) {
+								list += `<li>${prop} = ${json[i][prop]}</li>`;
+							}
+						}
+						list += '</ul>'
+					}
+					list += '</ul>'
+					document.getElementById('content').innerHTML=list
+				})
+
+
+
+
+				// fetch('http://azat.co')
+                // .then((response)=>{
+				// 	let textPromise = response.text()
+				// 	console.log(textPromise)
+				// 	.then((text) =>{
+				// 		document.getElementById('content').append(text)
+				// 	})
+
+				// })
+				
+                    
+                    
+            }
+        </script>
+    </body>
+</html>
